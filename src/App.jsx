@@ -3,7 +3,7 @@ function App() {
     <div className="App">
       <h1>Page</h1>
     </div>
-  );
+  )
 }
 
 export default App
