@@ -6,10 +6,10 @@ const AlbumsSlider = ({ albums }) => {
   const albumsFavorites = JSON.parse(localStorage.getItem('albums'))
   return (
     <>
-      <h1>Albums</h1>
-      <CustomSlider>
+      <h1>Álbumes</h1>
+      <CustomSlider length={albums.length} >
         {
-          albums.items.map(album => (
+          albums.map(album => (
             <div key={album.id}>
               <AlbumCard {...album} favorites={albumsFavorites} ></AlbumCard>
             </div>
@@ -21,7 +21,7 @@ const AlbumsSlider = ({ albums }) => {
 }
 
 AlbumsSlider.propTypes = {
-  albums: PropTypes.object
+  albums: PropTypes.array
 }
 
 AlbumsSlider.defaultProps = {

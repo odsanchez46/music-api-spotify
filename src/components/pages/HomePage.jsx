@@ -1,5 +1,5 @@
+import { useEffect, useState, lazy } from 'react'
 import { Box } from '@material-ui/core'
-import { useState, lazy } from 'react'
 import Search from '../atoms/Search'
 import useApi from '../custom-hooks/useApi'
 
@@ -8,11 +8,29 @@ const TracksSlider = lazy(() => import('../organisms/TracksSlider'))
 const ArtistsSlider = lazy(() => import('../organisms/ArtistsSlider'))
 
 const HomePage = () => {
-  const [data, setData] = useState(JSON.parse(window.localStorage.getItem('query')))
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    const query = JSON.parse(window.localStorage.getItem('query'))
+    if (query) {
+      setData(query)
+    } else {
+      newSearch({
+        q: 'end',
+        type: [
+          'artist',
+          'album',
+          'track'
+        ]
+      })
+    }
+  }, [])
+
   const newSearch = data => {
     const promise = useApi('/v1/search', data)
     promise.then(response => {
       setData(response.data)
+      window.localStorage.setItem('query', JSON.stringify(response.data))
     })
   }
 
@@ -23,14 +41,14 @@ const HomePage = () => {
         data !== null
           ? <>
             {data.albums && <Box>
-              <AlbumsSlider albums={data.albums}></AlbumsSlider>
+              <AlbumsSlider albums={data.albums.items}></AlbumsSlider>
             </Box>}
             {data.artists && <Box>
-              <ArtistsSlider artists={data.artists}></ArtistsSlider>
+              <ArtistsSlider artists={data.artists.items}></ArtistsSlider>
             </Box>}
             {
               data.tracks && <Box>
-                <TracksSlider tracks={data.tracks}></TracksSlider>
+                <TracksSlider tracks={data.tracks.items}></TracksSlider>
               </Box>
             }
           </>

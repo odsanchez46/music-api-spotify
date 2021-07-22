@@ -4,13 +4,12 @@ import CustomSlider from '../molecules/CustomSlider'
 
 const ArtistsSlider = ({ artists }) => {
   const artistFavorites = JSON.parse(localStorage.getItem('artists'))
-
   return (
     <>
       <h1>Artistas</h1>
-      <CustomSlider>
+      <CustomSlider length={artists.length} >
         {
-          artists.items.map(artist => (
+          artists.map(artist => (
             <div key={artist.id}>
               <ArtistCard {...artist} favorites={artistFavorites} ></ArtistCard>
             </div>
@@ -22,7 +21,7 @@ const ArtistsSlider = ({ artists }) => {
 }
 
 ArtistsSlider.propTypes = {
-  artists: PropTypes.object
+  artists: PropTypes.array
 }
 
 export default ArtistsSlider

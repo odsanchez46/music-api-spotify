@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
+import notFound from '../../assets/not_found.jpg'
 import withBtnFavorite from '../HOC/withBtnFavorite'
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
 
 const AlbumCard = ({ id, images, name, total_tracks: totalTracks, spotify, release_date: releaseDate }) => {
   const classes = useStyles()
+
+  let image = notFound
+
+  if (images && images.length > 0) {
+    image = images[0].url
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea className={classes.card}>
@@ -38,7 +46,7 @@ const AlbumCard = ({ id, images, name, total_tracks: totalTracks, spotify, relea
           component="img"
           alt={name}
           height="140"
-          image={images[0].url}
+          image={image}
           title={name}
         />
         <CardContent className={classes.content}>

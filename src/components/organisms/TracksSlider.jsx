@@ -29,9 +29,9 @@ const TracksSlider = ({ tracks }) => {
   return (
     <>
       <h1>Canciones</h1>
-      <CustomSlider config={sliderConfig} >
+      <CustomSlider length={tracks.length} config={sliderConfig} >
         {
-          tracks.items.map(track => (
+          tracks.map(track => (
             <div key={track.id}>
               <TrackCard {...track} favorites={tracksFavorites} ></TrackCard>
             </div>
@@ -43,7 +43,7 @@ const TracksSlider = ({ tracks }) => {
 }
 
 TracksSlider.propTypes = {
-  tracks: PropTypes.object
+  tracks: PropTypes.array
 }
 
 export default TracksSlider

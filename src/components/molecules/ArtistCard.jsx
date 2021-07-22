@@ -51,43 +51,6 @@ const ArtistCard = ({ images, name, popularity, followers, genres }) => {
     </Card>
   )
 }
-// {
-//   "external_urls": {
-//       "spotify": "https://open.spotify.com/artist/6F3vLfyutkUhpM50G84eMt"
-//   },
-//   "followers": {
-//       "href": null,
-//       "total": 31393
-//   },
-//   "genres": [
-//       "deep groove house",
-//       "house",
-//       "scottish rock"
-//   ],
-//   "href": "https://api.spotify.com/v1/artists/6F3vLfyutkUhpM50G84eMt",
-//   "id": "6F3vLfyutkUhpM50G84eMt",
-//   "images": [
-//       {
-//           "height": 640,
-//           "url": "https://i.scdn.co/image/ab6761610000e5eb129c3490edac16cbc82b6342",
-//           "width": 640
-//       },
-//       {
-//           "height": 320,
-//           "url": "https://i.scdn.co/image/ab67616100005174129c3490edac16cbc82b6342",
-//           "width": 320
-//       },
-//       {
-//           "height": 160,
-//           "url": "https://i.scdn.co/image/ab6761610000f178129c3490edac16cbc82b6342",
-//           "width": 160
-//       }
-//   ],
-//   "name": "Endor",
-//   "popularity": 65,
-//   "type": "artist",
-//   "uri": "spotify:artist:6F3vLfyutkUhpM50G84eMt"
-// }
 
 ArtistCard.propTypes = {
   images: PropTypes.array,
