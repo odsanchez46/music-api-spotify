@@ -12,7 +12,6 @@ const HomePage = () => {
   const newSearch = data => {
     const promise = useApi('/v1/search', data)
     promise.then(response => {
-      console.log(response.data)
       setData(response.data)
     })
   }
@@ -23,16 +22,18 @@ const HomePage = () => {
       {
         data !== null
           ? <>
-              <Box>
-                <AlbumsSlider albums={data.albums}></AlbumsSlider>
-              </Box>
-              <Box>
-                <ArtistsSlider artists={data.artists}></ArtistsSlider>
-              </Box>
-              <Box>
+            {data.albums && <Box>
+              <AlbumsSlider albums={data.albums}></AlbumsSlider>
+            </Box>}
+            {data.artists && <Box>
+              <ArtistsSlider artists={data.artists}></ArtistsSlider>
+            </Box>}
+            {
+              data.tracks && <Box>
                 <TracksSlider tracks={data.tracks}></TracksSlider>
               </Box>
-            </>
+            }
+          </>
           : <h1>Error al conectarse a la api</h1>
       }
 

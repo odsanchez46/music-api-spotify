@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import { Chip } from '@material-ui/core'
 
 const Genres = ({ genres, ...attr }) => (

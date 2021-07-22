@@ -1,7 +1,7 @@
-import { Box, Card, CardActions, CardHeader, CardMedia, IconButton, makeStyles } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import { PropTypes } from 'prop-types'
+import { Box, Card, CardHeader, CardMedia, makeStyles } from '@material-ui/core'
+import PropTypes from 'prop-types'
 import notFound from '../../assets/not_found.jpg'
+import withBtnFavorite from '../HOC/withBtnFavorite'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,11 +48,6 @@ const ArtistCard = ({ images, name, popularity, followers, genres }) => {
         image={image}
         title={name}
       />
-      <CardActions disableSpacing>
-        <IconButton aria-label="Añadir a favoritos">
-          <FavoriteIcon />
-        </IconButton>
-      </CardActions>
     </Card>
   )
 }
@@ -102,4 +97,4 @@ ArtistCard.propTypes = {
   genres: PropTypes.array
 }
 
-export default ArtistCard
+export default withBtnFavorite('artists', { right: '.4rem', bottom: '.3rem' })(ArtistCard)

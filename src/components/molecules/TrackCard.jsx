@@ -3,6 +3,7 @@ import { Card, CardContent, CardMedia, makeStyles, Typography } from '@material-
 import PropTypes from 'prop-types'
 
 import notFound from '../../assets/not_found.jpg'
+import withBtnFavorite from '../HOC/withBtnFavorite'
 import ArtistAvatarList from './ArtistAvatarList'
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +65,7 @@ const TrackCard = ({ album, artists, duration_ms: durationMs, explicit, name, po
           </Typography>
         </CardContent>
         <div className={classes.artist}>
-          <ArtistAvatarList max={3} artists={artists} ></ArtistAvatarList>
+          <ArtistAvatarList max={4} artists={artists} ></ArtistAvatarList>
         </div>
       </div>
     </Card>
@@ -91,4 +92,4 @@ TrackCard.defaultProps = {
   track_number: 1
 }
 
-export default TrackCard
+export default withBtnFavorite('tracks', { right: '.6rem', bottom: '.6rem' })(TrackCard)

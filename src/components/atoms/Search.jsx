@@ -1,6 +1,6 @@
 import { FormControlLabel, Box, makeStyles } from '@material-ui/core'
 import { useState } from 'react'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import RedCheckbox from './RedCheckbox'
 import RedInput from './RedInput'
 

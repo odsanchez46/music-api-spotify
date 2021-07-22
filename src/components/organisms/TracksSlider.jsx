@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import CustomSlider from '../molecules/CustomSlider'
 import TrackCard from '../molecules/TrackCard'
 
@@ -23,20 +23,24 @@ const sliderConfig = {
   ]
 }
 
-const TracksSlider = ({ tracks }) => (
-  <>
-    <h1>Canciones</h1>
-    <CustomSlider config={sliderConfig} >
-      {
-        tracks.items.map(track => (
-          <div key={track.id}>
-            <TrackCard {...track} ></TrackCard>
-          </div>
-        ))
-      }
-    </CustomSlider>
-  </>
-)
+const TracksSlider = ({ tracks }) => {
+  const tracksFavorites = JSON.parse(localStorage.getItem('tracks'))
+
+  return (
+    <>
+      <h1>Canciones</h1>
+      <CustomSlider config={sliderConfig} >
+        {
+          tracks.items.map(track => (
+            <div key={track.id}>
+              <TrackCard {...track} favorites={tracksFavorites} ></TrackCard>
+            </div>
+          ))
+        }
+      </CustomSlider>
+    </>
+  )
+}
 
 TracksSlider.propTypes = {
   tracks: PropTypes.object

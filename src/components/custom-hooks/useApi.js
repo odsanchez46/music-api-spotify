@@ -13,19 +13,11 @@ const getParams = data => {
   return paramsURl
 }
 
-async function useApi(url, data = null, getLocal = false) {
+function useApi(url, data = null) {
   if (url.indexOf('http') !== 0 && data) {
     url = url + getParams(data)
   }
   const key = getKey(url)
-
-  if (getLocal) {
-    const dataStorage = window.localStorage.getItem(key)
-
-    if (dataStorage) {
-      return JSON.parse(dataStorage)
-    }
-  }
 
   const apiKey = window.localStorage.getItem(key)
   const config = {
@@ -34,8 +26,7 @@ async function useApi(url, data = null, getLocal = false) {
     }
   }
 
-  const response = await axios.get(`${process.env.REACT_APP_API_URL}${url}`, config)
-  return response
+  return axios.get(`${process.env.REACT_APP_API_URL}${url}`, config)
 }
 
 export default useApi

@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core'
-import { PropTypes } from 'prop-types'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
+import PropTypes from 'prop-types'
+import withBtnFavorite from '../HOC/withBtnFavorite'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,11 +29,8 @@ const useStyles = makeStyles((theme) => ({
 })
 )
 
-const AlbumCard = ({ images, name, total_tracks: totalTracks, spotify, release_date: releaseDate }) => {
+const AlbumCard = ({ id, images, name, total_tracks: totalTracks, spotify, release_date: releaseDate }) => {
   const classes = useStyles()
-  // const addFavorite = () => {
-  //   console.log('add favorite')
-  // }
   return (
     <Card className={classes.root}>
       <CardActionArea className={classes.card}>
@@ -45,9 +42,6 @@ const AlbumCard = ({ images, name, total_tracks: totalTracks, spotify, release_d
           title={name}
         />
         <CardContent className={classes.content}>
-          {/* <Fab size="small" color="secondary" action={addFavorite} aria-label="like">
-            <FavoriteIcon />
-          </Fab> */}
           <Typography className={classes.title} gutterBottom variant="h6" component="h2">
             {name}
           </Typography>
@@ -58,6 +52,7 @@ const AlbumCard = ({ images, name, total_tracks: totalTracks, spotify, release_d
 }
 
 AlbumCard.propTypes = {
+  id: PropTypes.string,
   images: PropTypes.array,
   name: PropTypes.string,
   total_tracks: PropTypes.number,
@@ -65,4 +60,4 @@ AlbumCard.propTypes = {
   release_date: PropTypes.string
 }
 
-export default AlbumCard
+export default withBtnFavorite('albums', { right: '.4rem', top: '.3rem' })(AlbumCard)
