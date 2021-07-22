@@ -1,3 +1,4 @@
+import { Box, Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import CustomSlider from '../molecules/CustomSlider'
 import TrackCard from '../molecules/TrackCard'
@@ -28,7 +29,11 @@ const TracksSlider = ({ tracks }) => {
 
   return (
     <>
-      <h1>Canciones</h1>
+      <Box paddingTop="1.5rem" paddingLeft=".3rem">
+        <Typography variant="h4" component="h2">
+          Canciones
+        </Typography>
+        </Box>
       <CustomSlider length={tracks.length} config={sliderConfig} >
         {
           tracks.map(track => (

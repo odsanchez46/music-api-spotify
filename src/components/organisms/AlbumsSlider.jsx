@@ -1,3 +1,4 @@
+import { Box, Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import AlbumCard from '../molecules/AlbumCard'
 import CustomSlider from '../molecules/CustomSlider'
@@ -6,7 +7,11 @@ const AlbumsSlider = ({ albums }) => {
   const albumsFavorites = JSON.parse(localStorage.getItem('albums'))
   return (
     <>
-      <h1>Álbumes</h1>
+      <Box paddingTop="1.5rem" paddingLeft=".3rem">
+        <Typography variant="h4" component="h2">
+          Álbumes
+        </Typography>
+      </Box>
       <CustomSlider length={albums.length} >
         {
           albums.map(album => (
