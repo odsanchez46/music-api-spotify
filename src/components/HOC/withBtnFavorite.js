@@ -1,20 +1,21 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Box, Fab } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+import { Box } from '@material-ui/core'
+import Pulse from '../animations/Pulse'
+import FavoriteButton from '../atoms/FavoriteButton'
 
 const withBtnFavorite = (type, location) => (WrapperComponent) => {
   class WithBtnFavorite extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        isFavorite: this.props.favorites ? this.props.favorites.find(f => f === this.props.id) : false
+        isFavorite: this.props.favorites ? !!this.props.favorites.find(f => f === this.props.id) : false
       }
 
-      this.addToggleFavorite = this.addToggleFavorite.bind(this)
+      this.toggleFavorite = this.toggleFavorite.bind(this)
     }
 
-    addToggleFavorite(e) {
+    toggleFavorite(e) {
       e.preventDefault()
 
       let favorites = localStorage.getItem(type)
@@ -34,11 +35,11 @@ const withBtnFavorite = (type, location) => (WrapperComponent) => {
     render() {
       return <Box position="relative" >
         <WrapperComponent {...this.props} />
-        <Box position="absolute" {...location} title={this.state.isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'} >
-          <Fab size="small" onClick={this.addToggleFavorite} aria-label="like">
-            <FavoriteIcon color={this.state.isFavorite ? 'error' : 'disabled'} fontSize="small" />
-          </Fab>
-        </Box>
+        <Pulse>
+          <Box position="absolute" {...location} title={this.state.isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'} >
+            <FavoriteButton isFavorite={this.state.isFavorite} onClick={this.toggleFavorite} />
+          </Box>
+        </Pulse>
       </Box>
     }
   }

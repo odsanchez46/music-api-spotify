@@ -40,17 +40,17 @@ const FavoritePage = () => {
 
   return (
     <>
-      {albums.length > 0 && <Box>
-        <AlbumsSlider albums={albums}></AlbumsSlider>
-      </Box>}
-      {artists.length > 0 && <Box>
-        <ArtistsSlider artists={artists}></ArtistsSlider>
-      </Box>}
       {
         tracks.length > 0 && <Box>
           <TracksSlider tracks={tracks}></TracksSlider>
         </Box>
       }
+      {artists.length > 0 && <Box>
+        <ArtistsSlider artists={artists}></ArtistsSlider>
+      </Box>}
+      {albums.length > 0 && <Box>
+        <AlbumsSlider albums={albums}></AlbumsSlider>
+      </Box>}
     </>)
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy } from 'react'
-import { Box } from '@material-ui/core'
 import Search from '../atoms/Search'
 import useApi from '../custom-hooks/useApi'
+import AnimationOnEnter from '../animations/AnimationOnEnter'
 
 const AlbumsSlider = lazy(() => import('../organisms/AlbumsSlider'))
 const TracksSlider = lazy(() => import('../organisms/TracksSlider'))
@@ -40,21 +40,20 @@ const HomePage = () => {
       {
         data !== null
           ? <>
-            {data.albums && <Box>
-              <AlbumsSlider albums={data.albums.items}></AlbumsSlider>
-            </Box>}
-            {data.artists && <Box>
-              <ArtistsSlider artists={data.artists.items}></ArtistsSlider>
-            </Box>}
             {
-              data.tracks && <Box>
+              data.tracks && <AnimationOnEnter>
                 <TracksSlider tracks={data.tracks.items}></TracksSlider>
-              </Box>
+              </AnimationOnEnter>
             }
+            {data.artists && <AnimationOnEnter>
+              <ArtistsSlider artists={data.artists.items}></ArtistsSlider>
+            </AnimationOnEnter>}
+            {data.albums && <AnimationOnEnter>
+              <AlbumsSlider albums={data.albums.items}></AlbumsSlider>
+            </AnimationOnEnter>}
           </>
           : <h1>Error al conectarse a la api</h1>
       }
-
     </>
   )
 }

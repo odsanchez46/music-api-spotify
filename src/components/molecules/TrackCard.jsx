@@ -9,7 +9,8 @@ import ArtistAvatarList from './ArtistAvatarList'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    margin: '.2rem'
+    margin: '.2rem',
+    backgroundColor: '#EDEEF0'
   },
   details: {
     display: 'flex',
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flex: '1 0 auto',
     maxWidth: '100%',
+
     '& *': {
       whiteSpace: 'nowrap',
       overflow: 'hidden',
