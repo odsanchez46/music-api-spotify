@@ -51,7 +51,8 @@ const FavoritePage = () => {
       {albums.length > 0 && <Box>
         <AlbumsSlider albums={albums}></AlbumsSlider>
       </Box>}
-    </>)
+    </>
+  )
 }
 
 export default FavoritePage

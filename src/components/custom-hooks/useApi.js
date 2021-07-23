@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-const getKey = (text) => {
-  return window.btoa(text)
-}
+const API_KEY_SPOTIFY = 'API_KEY_SPOTIFY'
 
 const getParams = data => {
   let paramsURl = '?'
@@ -13,13 +11,14 @@ const getParams = data => {
   return paramsURl
 }
 
-function useApi(url, data = null) {
+function useApi(url, data = null, newApiKey = null) {
   if (url.indexOf('http') !== 0 && data) {
     url = url + getParams(data)
   }
-  const key = getKey(url)
-
-  const apiKey = window.localStorage.getItem(key)
+  if (newApiKey) {
+    window.localStorage.setItem(API_KEY_SPOTIFY, newApiKey)
+  }
+  const apiKey = newApiKey || window.localStorage.getItem(API_KEY_SPOTIFY)
   const config = {
     headers: {
       Authorization: `Bearer ${apiKey || process.env.REACT_APP_API_KEY_SPOTIFY}`

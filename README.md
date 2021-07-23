@@ -8,3 +8,7 @@
 4. Ingresa a el siguiente link [http://localhost:3000](http://localhost:3000)
 
 ## Obtener api key spotify
+1. Ingresar a [https://developer.spotify.com/console](https://developer.spotify.com/console/get-several-albums/)
+2. Dar clic en **Get Token**
+3. Copiar el token seguido del prefijo **Bearer** **TU_API_KEY**
+

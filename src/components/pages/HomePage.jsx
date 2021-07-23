@@ -2,36 +2,46 @@ import { useEffect, useState, lazy } from 'react'
 import Search from '../atoms/Search'
 import useApi from '../custom-hooks/useApi'
 import AnimationOnEnter from '../animations/AnimationOnEnter'
+import TokenSpotify from '../organisms/TokenSpotify'
 
 const AlbumsSlider = lazy(() => import('../organisms/AlbumsSlider'))
 const TracksSlider = lazy(() => import('../organisms/TracksSlider'))
 const ArtistsSlider = lazy(() => import('../organisms/ArtistsSlider'))
 
 const HomePage = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState({})
 
   useEffect(() => {
-    const query = JSON.parse(window.localStorage.getItem('query'))
-    if (query) {
-      setData(query)
-    } else {
-      newSearch({
-        q: 'end',
-        type: [
-          'artist',
-          'album',
-          'track'
-        ]
-      })
-    }
+    newSearch({
+      q: 'end',
+      type: [
+        'artist',
+        'album',
+        'track'
+      ]
+    })
   }, [])
 
-  const newSearch = data => {
-    const promise = useApi('/v1/search', data)
+  const newSearch = (data, apiKey = null) => {
+    const promise = useApi('/v1/search', data, apiKey)
     promise.then(response => {
       setData(response.data)
       window.localStorage.setItem('query', JSON.stringify(response.data))
+    }).catch(err => {
+      console.log(err)
+      setData(null)
     })
+  }
+
+  const updateKey = (updateKey) => {
+    newSearch({
+      q: 'end',
+      type: [
+        'artist',
+        'album',
+        'track'
+      ]
+    }, updateKey)
   }
 
   return (
@@ -52,7 +62,7 @@ const HomePage = () => {
               <AlbumsSlider albums={data.albums.items}></AlbumsSlider>
             </AnimationOnEnter>}
           </>
-          : <h1>Error al conectarse a la api</h1>
+          : <TokenSpotify onChange={updateKey} />
       }
     </>
   )
